@@ -89,11 +89,19 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
         end
 
-        it "ユーザー本名は全角（漢字・ひらがな・カタカナ）でなければ登録できない"do
+        it "ユーザー本名の名字は全角（漢字・ひらがな・カタカナ）でなければ登録できない"do
         @user.last_name = "test"
         @user.first_name = "test"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name Last name is invalid. Input full-width characters.","First name First name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include("Last name Last name is invalid. Input full-width characters.")
+        end
+
+
+        it "ユーザー本名の名前は全角（漢字・ひらがな・カタカナ）でなければ登録できない"do
+        @user.first_name = "test"
+        @user.valid?
+        # binding.pry
+        expect(@user.errors.full_messages).to include("First name First name is invalid. Input full-width characters.")
         end
 
 
