@@ -14,12 +14,6 @@ RSpec.describe User, type: :model do
           it "nickname,email、password,encrypted_password,last_name,first_name,last_kana,first_kana,birthdayが存在すれば登録できる" do
               expect(@user).to be_valid
           end
-      
-          it "passwordは６文字以上であれば登録できる"do
-          @user.password = "aaaa00"
-          @user.password_confirmation = "aaaa00"
-          expect(@user).to be_valid
-        end
    end
 
   context '保存できない場合' do
@@ -63,8 +57,28 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include("Password both letters and numbers")
         end
 
+        it 'passwordは数字のみでは登録できない' do
+          @user.password = '111111'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password both letters and numbers")
+        end
+
+        it "passwordが5文字以下であれば登録できないこと" do
+          @user.password = "12345"
+          @user.password_confirmation = "12345"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        end
+
+        it 'passwordは全角では登録できない' do
+          @user.password = 'AAAAAA'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Password both letters and numbers")
+        end
+
+
+
         it "passwordが存在してもpassword_confirmationが空では登録できない"do
-        # ＠user.password = "aaaa00"
         @user.password_confirmation = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
@@ -91,7 +105,6 @@ RSpec.describe User, type: :model do
 
         it "ユーザー本名の名字は全角（漢字・ひらがな・カタカナ）でなければ登録できない"do
         @user.last_name = "test"
-        @user.first_name = "test"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name Last name is invalid. Input full-width characters.")
         end
