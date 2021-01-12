@@ -27,7 +27,7 @@
 | burden_id | integer | null: false |
 | area_id | integer | null: false |
 | day_id | integer | null: false |
-| price | string | null: false |
+| price | integer | null: false |
 | user | references | null: false |
 
 
