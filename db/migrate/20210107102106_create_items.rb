@@ -4,12 +4,12 @@ class CreateItems < ActiveRecord::Migration[6.0]
 
       t.string          :item_name
       t.text             :details
-      t.integer        :category_id
-      t.integer        :state_id
-      t.integer        :burden_id
-      t.integer        :area_id
-      t.integer        :day_id
-      t.string          :price
+      t.integer        :category_id                   , null: false
+      t.integer        :state_id                         , null: false
+      t.integer        :burden_id                      , null: false
+      t.integer        :area_id                          , null: false
+      t.integer        :day_id                           , null: false
+      t.integer        :price
       t.references   :user
 
       t.timestamps

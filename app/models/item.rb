@@ -1,23 +1,43 @@
 class Item < ApplicationRecord
-  belong_to :user
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :state
+  belongs_to_active_hash :burden
+  belongs_to_active_hash :area
+  belongs_to_active_hash :day
+  
+  belongs_to :user
   has_one_attached :image
- 
+
+  
   with_options presence: true do
-
-  validates :image
-  validates :item_name
-  validates :details
-  validates :price format: { with:/\A([1-9]{300,9999999}\d*,)*[1-9]{300,9999999}\d*\z/  message: "
-  Please enter the price between ¥ 300 and ¥ 999999"}
-
+    validates :image
+    validates :item_name
+    validates :details
+    validates :category
+    validates :state
+    validates :burden
+    validates :area
+    validates :day
+    validates :price
   end
-  with_options numericality: { other_than: 1 } do
-  validates :category_id
-  validates :state_id
-  validates :burden_id
-  validates :area_id
-  validates :day_id
+  
+    validates_inclusion_of :price , in: 300..9_999_999, message: 'Please enter between ¥ 300 and ¥ 9,99,999'  
 
- end
+     validates :category_id, numericality: { other_than: 1 }
+     validates :state_id, numericality: { other_than: 1 }
+     validates :burden_id, numericality: { other_than: 1 }
+     validates :area_id, numericality: { other_than: 1 }
+     validates :day_id, numericality: { other_than: 1 }
+  
+  # with_options numericality: { other_than: 1 } do
+  #   validates :category
+  #   validates :state
+  #   validates :burden
+  #   validates :area
+  #   validates :day
+  # end
 
+
+  
 end
