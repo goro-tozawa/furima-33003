@@ -13,7 +13,7 @@
           <%= "商品名" %>
         </h2>
         <div class='buy-item-price'>
-          <%# <p class='item-price-text'>¥<%= 999,999,999</p> %>
+        <%# 　 <p class='item-price-text'>¥<%= 999,999,999</p> %>
           <%# 上記はエラーがでるので保留 %>
           <p class='item-price-sub-text'><%= '配送料負担' %></p>
         </div>
@@ -33,6 +33,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with model:@user_purchase,local: true,id: 'charge-form',url: item_orders_path, method: :post, class: 'transaction-form-wrap' do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
