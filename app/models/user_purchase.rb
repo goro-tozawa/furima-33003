@@ -6,8 +6,8 @@ class UserPurchase
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :municipality
     validates :address
-    validates :phone_number, format: { with:/\A\d{11}\z/}
-    # messageは必要ない？
+    validates :phone_number, format: { with:/\A\d{11}\z/, message: "Please enter the phone number within 11 digits" }
+ 
   end
 
     validates :area_id, numericality: { other_than: 1 }
