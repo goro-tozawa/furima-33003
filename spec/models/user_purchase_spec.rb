@@ -8,12 +8,19 @@ RSpec.describe UserPurchase, type: :model do
   describe "商品購入昨日" do
 
     context"保存できる場合" do
-      it"postal_code,area_id,municipality,address,phone_numberが存在すれば購入ができる"do
+      it"token,postal_code,area_id,municipality,address,phone_numberが存在すれば購入ができる"do
         expect(@user_purchase).to be_valid
       end
     end
 
     context"保存できない場合" do
+         
+      it "tokenが空では登録できないこと" do
+        @user_purchase.token = ""
+        @user_purchase.valid?
+        expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+
       it"postal_codeが空では保存ができない"do
       @user_purchase.postal_code = ""
       @user_purchase.valid?
@@ -57,7 +64,7 @@ RSpec.describe UserPurchase, type: :model do
     @user_purchase.valid?
     expect(@user_purchase.errors.full_messages).to include("Phone number Please enter the phone number within 11 digits")
     end
-  
+
 end
   
 end
