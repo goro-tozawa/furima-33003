@@ -46,19 +46,19 @@ RSpec.describe UserPurchase, type: :model do
         end
         
         it"municipalityが空では保存できない"do
-        @user_purchase.municipality = ""
+        @user_purchase.municipality = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Municipality can't be blank")
         end
 
         it"addressが空では保存できない"do
-        @user_purchase.address = ""
+        @user_purchase.address = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Address can't be blank")
         end
 
         it"phone_numberが空では保存できない"do
-        @user_purchase.phone_number = ""
+        @user_purchase.phone_number = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Phone number can't be blank")
         end
@@ -76,13 +76,13 @@ RSpec.describe UserPurchase, type: :model do
         end
 
         it"user_idは空では保存できない"do
-        @user_purchase.user_id = ""
+        @user_purchase.user_id = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("User can't be blank")
         end
 
         it"item_idは空では保存できない"do
-        @user_purchase.item_id = ""
+        @user_purchase.item_id = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Item can't be blank")
         end
