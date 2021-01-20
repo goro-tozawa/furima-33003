@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe UserPurchase, type: :model do
   before do
-    @user_purchase = FactoryBot.build(:user_purchase)
-    @user = FactoryBot.build(:user)
-    @item = FactoryBot.build(:item)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item, user: user)
+    sleep(0.1)
+    @user_purchase = FactoryBot.build(:user_purchase, user_id: user, item_id: item)
   end
 
   describe "商品購入昨日" do
@@ -22,7 +23,7 @@ RSpec.describe UserPurchase, type: :model do
 
     context"保存できない場合" do
         it "tokenが空では登録できないこと" do
-            @user_purchase.token = ""
+            @user_purchase.token = nil
             @user_purchase.valid?
             expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
           end
