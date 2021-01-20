@@ -6,12 +6,12 @@ class UserPurchase
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :municipality
     validates :address
-    validates :phone_number, format: { with:/\A\d{11}\z/, message: "Please enter the phone number within 11 digits" }
+    validates :phone_number, format: { with:/\A\d{11}\z/, message: "Please write within 11 digits with only numbers"}
     validates :token
     validates :user_id
     validates :item_id
   end
-  
+
     validates :area_id, numericality: { other_than: 1 }
   
   def save
