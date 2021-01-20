@@ -8,11 +8,11 @@ class UserPurchase
     validates :address
     validates :phone_number, format: { with:/\A\d{11}\z/, message: "Please enter the phone number within 11 digits" }
     validates :token
+    validates :user_id
+    validates :item_id
   end
-
+  
     validates :area_id, numericality: { other_than: 1 }
-  # validates :building_name
-  # 建物名は自由なのでバリデーションは必要ない？
   
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
