@@ -29,18 +29,18 @@ RSpec.describe UserPurchase, type: :model do
           end
 
         it"postal_codeが空では保存ができない"do
-          @user_purchase.postal_code = ""
+          @user_purchase.postal_code = nil
           @user_purchase.valid?
           expect(@user_purchase.errors.full_messages).to include("Postal code can't be blank")
           end
 
         it"postal_code内に「-」がないと保存ができない"do
-          @user_purchase.postal_code = "1111111"
+          @user_purchase.postal_code = 1111111
           @user_purchase.valid?
           expect(@user_purchase.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
         end
         it"area_idは2以上でなければ保存できない"do
-        @user_purchase.area_id = "1"
+        @user_purchase.area_id = 1
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Area must be other than 1")
         end
