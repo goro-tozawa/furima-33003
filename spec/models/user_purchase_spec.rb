@@ -8,7 +8,7 @@ RSpec.describe UserPurchase, type: :model do
     @user_purchase = FactoryBot.build(:user_purchase, user_id: user, item_id: item)
   end
 
-  describe "商品購入昨日" do
+  describe "商品購入機能" do
 
     context"保存できる場合" do
         it"token,postal_code,area_id,municipality,address,phone_numberが存在すれば購入ができる"do
