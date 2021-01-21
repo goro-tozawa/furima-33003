@@ -16,7 +16,6 @@
 - has_many : items
 - has_many :purchases
 
-
 ## items
 | Column | Type | Options |
 | ---------- | -------- | -------- |
