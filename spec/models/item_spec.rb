@@ -95,19 +95,19 @@ RSpec.describe Item, type: :model do
       it"価格の設定が、￥299以下では出品できない" do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,99,999")
+        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,999,999")
       end
 
       it"価格の設定が、￥10000000以上では出品できない" do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,99,999")
+        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,999,999")
       end
 
       it"価格の数字が全角では出品できない" do
         @item.price = "TEST"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,99,999")
+        expect(@item.errors.full_messages).to include("Price Please enter between ¥ 300 and ¥ 9,999,999")
       end
 
     end
